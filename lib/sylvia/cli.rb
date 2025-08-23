@@ -1,3 +1,5 @@
+require 'json'
+
 module Sylvia
   class CLI
     FILE_NAME = "sylvia.rb"
