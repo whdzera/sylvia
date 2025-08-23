@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.bindir = "bin"
   spec.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
   spec.add_dependency "ruby_llm"
   spec.add_dependency "dotenv"
   spec.add_development_dependency "syntax_tree", "6.2.0"

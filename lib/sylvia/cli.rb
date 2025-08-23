@@ -1,11 +1,6 @@
-require 'json'
+require "json"
 
 module Sylvia
-
-
-
-  
-  
   class CLI
     FILE_NAME = "sylvia.rb"
     PRETTIER_FILE = ".prettierrc"
