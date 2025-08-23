@@ -37,6 +37,7 @@ GEM
       uri
     pp (0.6.2)
       prettyprint
+    prettier_print (1.2.1)
     prettyprint (0.2.0)
     psych (5.2.6)
       date
@@ -70,6 +71,8 @@ GEM
       marcel (~> 1.0)
       zeitwerk (~> 2)
     stringio (3.1.7)
+    syntax_tree (6.2.0)
+      prettier_print (>= 1.2.0)
     uri (1.0.3)
     zeitwerk (2.7.3)
 
@@ -82,6 +85,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.0)
   sylvia!
+  syntax_tree (= 6.2.0)
 
 BUNDLED WITH
    2.6.9
