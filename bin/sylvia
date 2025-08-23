@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "sylvia"
+
+Sylvia::CLI.start(ARGV)
