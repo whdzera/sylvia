@@ -1,20 +1,20 @@
-module Sylvia
-  class CLI
-    def self.start(args)
-      command = args.shift
+def self.create_file
+  filename = "sylvia.rb"
+  content = <<~RUBY
+    require 'ruby_llm'
+    require 'dotenv'
+    Dotenv.load
 
-      case command
-      when "install"
-        create_file
-      else
-        puts "Usage: sylvia install"
-      end
+    RubyLLM.configure do |config|
+      config.gemini_api_key = ENV.fetch('gemini', nil)
     end
 
-    def self.create_file
-      filename = "example.txt"
-      File.write(filename, "Hello from sylvia!\n")
-      puts "✅ Created #{filename}"
-    end
-  end
+    chat = RubyLLM.chat(model: 'gemini-2.0-flash')
+
+    response = chat.ask "Siapa prabowo Subianto?"
+    puts response
+  RUBY
+
+  File.write(filename, content)
+  puts "✅ Created #{filename}"
 end
