@@ -1,20 +1,50 @@
-def self.create_file
-  filename = "sylvia.rb"
-  content = <<~RUBY
-    require 'ruby_llm'
-    require 'dotenv'
-    Dotenv.load
+module Sylvia
+  class CLI
+    FILE_NAME = "sylvia.rb"
 
-    RubyLLM.configure do |config|
-      config.gemini_api_key = ENV.fetch('gemini', nil)
+    def self.start(args)
+      command = args.shift
+
+      case command
+      when "install"
+        create_file
+      when "run"
+        run_file
+      else
+        puts "Usage:"
+        puts "  sylvia install  # Create sylvia.rb"
+        puts "  sylvia run      # Run sylvia.rb"
+      end
     end
 
-    chat = RubyLLM.chat(model: 'gemini-2.0-flash')
+    def self.create_file
+      content = <<~RUBY
+        require 'ruby_llm'
+        require 'dotenv'
+        Dotenv.load
 
-    response = chat.ask "Siapa prabowo Subianto?"
-    puts response
-  RUBY
+        RubyLLM.configure do |config|
+          config.gemini_api_key = ENV.fetch('gemini', nil)
+        end
 
-  File.write(filename, content)
-  puts "✅ Created #{filename}"
+        chat = RubyLLM.chat(model: 'gemini-2.0-flash')
+
+        # Just ask questions
+        response = chat.ask "Siapa prabowo Subianto?"
+        puts response
+      RUBY
+
+      File.write(FILE_NAME, content)
+      puts "✅ Created #{FILE_NAME}"
+    end
+
+    def self.run_file
+      unless File.exist?(FILE_NAME)
+        puts "⚠️  #{FILE_NAME} not found. Run `sylvia install` first."
+        return
+      end
+
+      system("ruby #{FILE_NAME}")
+    end
+  end
 end
