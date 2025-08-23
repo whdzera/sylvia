@@ -2,18 +2,39 @@ PATH
   remote: .
   specs:
     sylvia (0.1.0)
+      dotenv
+      ruby_llm
 
 GEM
   remote: https://rubygems.org/
   specs:
+    base64 (0.3.0)
     date (3.4.1)
     diff-lcs (1.6.2)
+    dotenv (3.1.8)
     erb (5.0.2)
+    event_stream_parser (1.0.0)
+    faraday (2.13.4)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-multipart (1.1.1)
+      multipart-post (~> 2.0)
+    faraday-net_http (3.4.1)
+      net-http (>= 0.5.0)
+    faraday-retry (2.3.2)
+      faraday (~> 2.0)
     io-console (0.8.1)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    json (2.13.2)
+    logger (1.7.0)
+    marcel (1.0.4)
+    multipart-post (2.4.1)
+    net-http (0.6.0)
+      uri
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -39,7 +60,18 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.4)
+    ruby_llm (1.5.1)
+      base64
+      event_stream_parser (~> 1)
+      faraday (>= 1.10.0)
+      faraday-multipart (>= 1)
+      faraday-net_http (>= 1)
+      faraday-retry (>= 1)
+      marcel (~> 1.0)
+      zeitwerk (~> 2)
     stringio (3.1.7)
+    uri (1.0.3)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   ruby

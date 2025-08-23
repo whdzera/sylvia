@@ -31,7 +31,7 @@ module Sylvia
 
         # Just ask questions
         response = chat.ask "Siapa prabowo Subianto?"
-        puts response
+        puts response.content
       RUBY
 
       File.write(FILE_NAME, content)
