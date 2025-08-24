@@ -20,19 +20,23 @@ gem install sylvia
 ```
 sylvia prettier
 ```
-created `.prettierrc` include config plugin-ruby for formatter code ruby.
+automatically `npm init -y`, created `.prettierrc`, `package.json`, `npm intall`, `bundle install`
 
-created `package.json` and adedd dependency prettier and plugin-ruby.
+`.prettierrc` => config plugin-ruby for formatter code ruby.
+
+`package.json` => adedd dependency prettier and plugin-ruby.
+
+`gemfile` => added gem syntax_tree
 
 ##### Setup AI LLM
 ```
 sylvia llm
 ```
-created `sylvia.rb` and added configuration ruby_LLM (set your model LLM and API key)
+automatically created `sylvia.rb` and added configuration ruby_LLM (set your model LLM and API key)
 
 ask to Ai like this
 ```ruby
-response = chat.ask "how to improve this code", with: ["assets/example.rb", "assets/example2.rb"]
+chat.ask "how to improve this code", with: ["app/example.rb", "app/example2.rb"]
 ```
 
 This is like a cursor/copilot, but manual.
