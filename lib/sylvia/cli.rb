@@ -18,8 +18,8 @@ module Sylvia
         setup_prettier
       else
         puts "Usage:"
-        puts "  sylvia install   # Create sylvia.rb"
-        puts "  sylvia run       # Run sylvia.rb"
+        puts "  sylvia llm   # Create setup file llm"
+        puts "  sylvia ai    # Run llm"
         puts "  sylvia prettier  # Setup Prettier for Ruby"
       end
     end
