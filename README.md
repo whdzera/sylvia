@@ -6,7 +6,7 @@
 [![Gem Downloads](https://img.shields.io/gem/dt/sylvia.svg)](https://rubygems.org/gems/sylvia)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-My Private Assistant Tool for ruby development (support Ruby LLM)
+My Private Assistant Tool for ruby development
 
 ## Installation
 
@@ -20,7 +20,7 @@ gem install sylvia
 ```
 sylvia prettier
 ```
-automatically `npm init -y`, created `.prettierrc`, `package.json`, `npm intall`, `bundle install`
+automatically `npm init -y`, created `.prettierrc`, `package.json`, execute `npm intall`, `bundle install`
 
 `.prettierrc` => config plugin-ruby for formatter code ruby.
 
