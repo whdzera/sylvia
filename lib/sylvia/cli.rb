@@ -27,6 +27,7 @@ module Sylvia
     def self.setup_llm
       content = <<~RUBY
         require 'ruby_llm'
+        require 'tty-markdown'
         require 'dotenv'
         Dotenv.load
 
@@ -38,7 +39,9 @@ module Sylvia
 
         response = chat.ask "how to improve this code", with: ["assets/example.rb", "assets/example2.rb"]
 
-        puts response.content
+        markdown = response.content.to_s
+        
+        puts TTY::Markdown.parse(markdown)
       RUBY
 
       File.write(FILE_NAME, content)
