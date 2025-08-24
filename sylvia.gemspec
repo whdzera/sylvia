@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "ruby_llm"
   spec.add_dependency "dotenv"
-  spec.add_development_dependency "syntax_tree", "6.2.0"
+  spec.add_development_dependency "syntax_tree"
 end

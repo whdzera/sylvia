@@ -10,10 +10,10 @@ module Sylvia
       command = args.shift
 
       case command
-      when "install"
-        create_file
-      when "run"
-        run_file
+      when "llm"
+        setup_llm
+      when "ai"
+        run_llm
       when "prettier"
         setup_prettier
       else
@@ -24,7 +24,7 @@ module Sylvia
       end
     end
 
-    def self.create_file
+    def self.setup_llm
       content = <<~RUBY
         require 'ruby_llm'
         require 'dotenv'
@@ -36,8 +36,8 @@ module Sylvia
 
         chat = RubyLLM.chat(model: 'gemini-2.0-flash')
 
-        # Just ask questions
-        response = chat.ask "Siapa prabowo Subianto?"
+        response = chat.ask "how to improve this code", with: ["assets/example.rb", "assets/example2.rb"]
+
         puts response.content
       RUBY
 
@@ -45,7 +45,7 @@ module Sylvia
       puts "✅ Created #{FILE_NAME}"
     end
 
-    def self.run_file
+    def self.run_llm
       unless File.exist?(FILE_NAME)
         puts "⚠️  #{FILE_NAME} not found. Run `sylvia install` first."
         return
@@ -61,14 +61,14 @@ module Sylvia
       end
 
       prettier_config = <<~JSON
-        {
-          "plugins": ["@prettier/plugin-ruby"],
-          "rubyStrictMode": false,
-          "tabWidth": 2,
-          "useTabs": false,
-          "singleQuote": true
-        }
-      JSON
+    {
+      "plugins": ["@prettier/plugin-ruby"],
+      "rubyStrictMode": false,
+      "tabWidth": 2,
+      "useTabs": false,
+      "singleQuote": true
+    }
+  JSON
 
       File.write(PRETTIER_FILE, prettier_config)
       puts "✅ Created #{PRETTIER_FILE}"
@@ -87,6 +87,23 @@ module Sylvia
 
       puts "⚡ Running `npm install`..."
       system("npm install")
+
+      gemfile = "Gemfile"
+      if File.exist?(gemfile)
+        content = File.read(gemfile)
+        unless content.include?('gem "syntax_tree"')
+          File.open(gemfile, "a") { |f| f.puts "\ngem \"syntax_tree\"" }
+          puts "✅ Added gem 'syntax_tree' to Gemfile"
+        else
+          puts "⚠️  Gemfile already contains syntax_tree"
+        end
+
+        puts "⚡ Running `bundle install`..."
+        system("bundle install")
+      else
+        puts "⚠️  No Gemfile found. Skipping syntax_tree installation."
+      end
+
       puts "🎉 Prettier setup complete!"
     end
   end
