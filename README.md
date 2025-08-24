@@ -16,20 +16,32 @@ gem install sylvia
 
 ## Usage
 
-Setup Prettier
+##### Setup Prettier
 ```
 sylvia prettier
 ```
+created `.prettierrc` include config plugin-ruby for formatter code ruby.
 
-Setup LLM (with Ruby_LLM)
+created `package.json` and adedd dependency prettier and plugin-ruby.
+
+##### Setup AI LLM
 ```
 sylvia llm
 ```
+created `sylvia.rb` and added configuration ruby_LLM (set your model LLM and API key)
 
-Run AI LLM
+ask to Ai like this
+```ruby
+response = chat.ask "how to improve this code", with: ["assets/example.rb", "assets/example2.rb"]
+```
+
+This is like a cursor/copilot, but manual.
+
+##### Run AI LLM
 ```
 sylvia ai
 ```
+run ruby_LLM `sylvia.rb`
 
 
 ## Development
