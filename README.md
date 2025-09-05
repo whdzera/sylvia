@@ -49,6 +49,12 @@ This is like a cursor/copilot, but manual.
 sylvia ai
 ```
 
+##### Check Version
+
+```
+sylvia -v
+```
+
 run ruby_LLM `sylvia.rb`
 
 ## Development

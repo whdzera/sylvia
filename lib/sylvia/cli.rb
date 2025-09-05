@@ -1,4 +1,5 @@
 require "json"
+require_relative "version"
 require_relative "llm"
 require_relative "prettier"
 require_relative "rubocop"
@@ -19,6 +20,8 @@ module Sylvia
         RuboCop.setup
       when "rubocop-todo"
         RuboCop.generate_todo
+      when "-v", "--version"
+        puts "Sylvia version #{Sylvia::VERSION}"
       else
         puts "Usage:"
         puts "  sylvia llm           # Create setup file llm"
@@ -26,6 +29,7 @@ module Sylvia
         puts "  sylvia prettier      # Setup Prettier for Ruby"
         puts "  sylvia rubocop       # Create .rubocop.yml config file"
         puts "  sylvia rubocop-todo  # Generate .rubocop_todo.yml automatically"
+        puts "  sylvia -v, --version # Show Sylvia version"
       end
     end
   end

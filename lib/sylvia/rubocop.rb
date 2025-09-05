@@ -5,70 +5,83 @@ module Sylvia
     def self.setup
       if File.exist?(CONFIG_FILE)
         puts "#{CONFIG_FILE} already exists. Skipping."
-        return
+      else
+        config_content = <<~YAML
+          AllCops:
+            Include:
+              - "**/*.rb"
+              - "**/*.rake"
+              - "."
+            Exclude:
+              - "vendor/**/*"
+              - "db/schema.rb"
+            NewCops: enable
+
+          Layout/LineLength:
+            Max: 120
+            Exclude:
+              - "spec/**/*"
+
+          Style/BlockDelimiters:
+            Exclude:
+              - "spec/**/*"
+
+          Lint/AmbiguousBlockAssociation:
+            Exclude:
+              - "spec/**/*"
+
+          Metrics/BlockLength:
+            Exclude:
+              - "spec/**/*"
+
+          Layout/HeredocIndentation:
+            Enabled: false
+
+          Metrics/ClassLength:
+            Max: 175
+
+          Metrics/MethodLength:
+            Max: 25
+
+          Metrics/ParameterLists:
+            Max: 20
+
+          Metrics/AbcSize:
+            Enabled: false
+
+          Metrics/PerceivedComplexity:
+            Enabled: false
+
+          Metrics/CyclomaticComplexity:
+            Enabled: false
+
+          Style/HashEachMethods:
+            Enabled: true
+
+          Style/HashTransformKeys:
+            Enabled: false
+
+          Style/HashTransformValues:
+            Enabled: false
+        YAML
+
+        File.write(CONFIG_FILE, config_content)
+        puts "Created #{CONFIG_FILE}"
       end
 
-      config_content = <<~YAML
-        AllCops:
-          Include:
-            - "**/*.rb"
-            - "**/*.rake"
-            - "."
-          Exclude:
-            - "vendor/**/*"
-            - "db/schema.rb"
-          NewCops: enable
-
-        Layout/LineLength:
-          Max: 120
-          Exclude:
-            - "spec/**/*"
-
-        Style/BlockDelimiters:
-          Exclude:
-            - "spec/**/*"
-
-        Lint/AmbiguousBlockAssociation:
-          Exclude:
-            - "spec/**/*"
-
-        Metrics/BlockLength:
-          Exclude:
-            - "spec/**/*"
-
-        Layout/HeredocIndentation:
-          Enabled: false
-
-        Metrics/ClassLength:
-          Max: 175
-
-        Metrics/MethodLength:
-          Max: 25
-
-        Metrics/ParameterLists:
-          Max: 20
-
-        Metrics/AbcSize:
-          Enabled: false
-
-        Metrics/PerceivedComplexity:
-          Enabled: false
-
-        Metrics/CyclomaticComplexity:
-          Enabled: false
-
-        Style/HashEachMethods:
-          Enabled: true
-
-        Style/HashTransformKeys:
-          Enabled: false
-
-        Style/HashTransformValues:
-          Enabled: false
-      YAML
-
-      File.write(CONFIG_FILE, config_content)
-      puts "Created #{CONFIG_FILE}"
+      gemfile = 'Gemfile'
+      if File.exist?(gemfile)
+        content = File.read(gemfile)
+        if content.include?('gem "rubocop"')
+          puts 'Gemfile already contains rubocop'
+        else
+          File.open(gemfile, 'a') { |f| f.puts "\ngem \"rubocop\", require: false" }
+          puts "Added gem 'rubocop' to Gemfile"
+          system('bundle install')
+        end
+      else
+        puts "No Gemfile found. Please create one and add gem 'rubocop'."
+      end
     end
 
     def self.generate_todo
