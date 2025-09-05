@@ -1,4 +1,3 @@
-
 ## Sylvia
 
 ![Lang](https://img.shields.io/badge/language-ruby-red)
@@ -16,25 +15,28 @@ gem install sylvia
 
 ## Usage
 
-##### Setup Prettier
+##### Setup Prettier for ruby
+
 ```
 sylvia prettier
 ```
-automatically `npm init -y`, created `.prettierrc`, `package.json`, execute `npm intall`, `bundle install`
 
-`.prettierrc` => config plugin-ruby for formatter code ruby.
+##### Setup Rubocop
 
-`package.json` => adedd dependency prettier and plugin-ruby.
+```
+sylvia rubocop
+```
 
-`gemfile` => added gem syntax_tree
+##### Setup and Configuration AI LLM
 
-##### Setup AI LLM
 ```
 sylvia llm
 ```
+
 automatically created `sylvia.rb` and added configuration ruby_LLM (set your model LLM and API key)
 
 ask to Ai like this
+
 ```ruby
 chat.ask "how to improve this code", with: ["app/example.rb", "app/example2.rb"]
 ```
@@ -42,11 +44,12 @@ chat.ask "how to improve this code", with: ["app/example.rb", "app/example2.rb"]
 This is like a cursor/copilot, but manual.
 
 ##### Run AI LLM
+
 ```
 sylvia ai
 ```
-run ruby_LLM `sylvia.rb`
 
+run ruby_LLM `sylvia.rb`
 
 ## Development
 
