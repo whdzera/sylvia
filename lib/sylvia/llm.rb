@@ -35,7 +35,8 @@ PROMPT
       puts "Created #{FILE_NAME}"
 
       if File.exist?(GITIGNORE_FILE)
-        gitignore_content = File.read(GITIGNORE_FILE).split("\n")
+        gitignore_content = File.read(GITIGNORE_FILE)
+        gitignore_content += "\n" unless gitignore_content.end_with?("\n")
         if gitignore_content.include?(FILE_NAME)
           puts "#{FILE_NAME} is already in #{GITIGNORE_FILE}"
         else
