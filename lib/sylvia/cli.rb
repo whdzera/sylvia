@@ -1,8 +1,10 @@
+# lib/sylvia/cli.rb
 require "json"
 require_relative "version"
 require_relative "llm"
 require_relative "prettier"
 require_relative "rubocop"
+require_relative "jekyll"
 
 module Sylvia
   class CLI
@@ -20,6 +22,9 @@ module Sylvia
         RuboCop.setup
       when "rubocop-todo"
         RuboCop.generate_todo
+      when "jekyll"
+        target = args.shift || "jekyll-app"
+        Jekyll.new_project(target)
       when "-v", "--version"
         puts "Sylvia version #{Sylvia::VERSION}"
       else
@@ -29,6 +34,7 @@ module Sylvia
         puts "  sylvia prettier      # Setup Prettier for Ruby"
         puts "  sylvia rubocop       # Create .rubocop.yml config file"
         puts "  sylvia rubocop-todo  # Generate .rubocop_todo.yml automatically"
+        puts "  sylvia jekyll [dir]  # Create Jekyll boilerplate project"
         puts "  sylvia -v, --version # Show Sylvia version"
       end
     end
