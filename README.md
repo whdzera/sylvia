@@ -24,7 +24,7 @@ sylvia jekyll new_app
 ##### Generate template Bot (Discord & Telegram)
 
 ```
-sylvia Bot new_app
+sylvia bot new_app
 ```
 
 ##### Setup Prettier for ruby
