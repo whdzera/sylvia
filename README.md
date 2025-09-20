@@ -15,6 +15,12 @@ gem install sylvia
 
 ## Usage
 
+##### Generate template jekyll (vite, stimulus, tailwind)
+
+```
+sylvia jekyll new_app
+```
+
 ##### Setup Prettier for ruby
 
 ```
